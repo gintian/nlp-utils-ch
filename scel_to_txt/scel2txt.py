@@ -1,10 +1,4 @@
 # -*- coding: utf-8 -*-
-"""
-   Author :        Jesper
-   Date：          2020/2/17 15:32
-   Description :
-   Changed by:
-"""
 import struct
 import os
 
@@ -139,10 +133,8 @@ def scel2txt(file_name):
     getChinese(data[startChinese:])
 
 def convert_scel_to_txt(src_path_dir, target_file_path):
-	# # scel所在文件夹路径
-	# in_path = "/Users/really/Documents/coal_dict"
-	# # 输出词典所在文件夹路径
-	# out_path = "coal_dict.txt"
+	# scel所在文件夹路径
+	# 输出词典所在文件夹路径
 
 	in_path = src_path_dir
 	out_path = target_file_path

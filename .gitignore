@@ -1,0 +1,12 @@
+.idea/
+
+data/
+unit_test/
+trash/
+venv/
+__pycache__/*
+*/__pycache__/*
+*.pyc
+*.tar
+*.zip
+*.log
