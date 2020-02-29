@@ -27,10 +27,10 @@ def test_zhconv():
 	print(convert('人体内存在很多微生物', 'zh-tw'))
 
 def test_char_judgement():
-	from char_judgement.char_judgement import is_contains_chinese, is_all_chinese, is_ch_digit_letter
+	from char_judgement.char_judgement import is_contain_chinese, is_all_chinese, is_ch_digit_letter, len_of_ch_digit_letter
 
-	res_1 = is_contains_chinese("abc测试一下")
-	res_2 = is_contains_chinese("abc")
+	res_1 = is_contain_chinese("abc测试一下")
+	res_2 = is_contain_chinese("abc")
 	print(res_1)
 	print(res_2)
 	res_3 = is_all_chinese("测试一下")
@@ -38,9 +38,10 @@ def test_char_judgement():
 	print(res_3)
 	print(res_4)
 	res_5 = is_ch_digit_letter("123abc测试一下")
-	res_6 = is_ch_digit_letter("123abc测试一下^_^")
+	res_6 = is_ch_digit_letter("1")
 	print(res_5)
 	print(res_6)
+	print(len_of_ch_digit_letter("..123abc测试一下a.."))
 
 def test_scel_to_txt():
 	from scel_to_txt.scel2txt import convert_scel_to_txt
@@ -51,4 +52,4 @@ def test_scel_to_txt():
 
 
 if __name__ == '__main__':
-	test_zhconv()
+	test_char_judgement()
