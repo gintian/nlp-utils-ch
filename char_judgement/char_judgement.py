@@ -20,6 +20,13 @@ def is_all_chinese(text):
             return False
     return True
 
+# 判断是否全为英文字符
+def is_all_letter(text):
+	for _char in text:
+		if not is_alphabet(_char):
+			return False
+	return True
+
 
 
 #   判断是否仅包括中文，数字或者字母（暂时忽略小数）

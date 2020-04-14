@@ -14,8 +14,8 @@ def test_flast_text():
 	words=["测试", "用例"]
 	keyword_processor = KeywordProcessor()
 	for word in words:
-		keyword_processor.add_keyword(word)
-	keywords_found = keyword_processor.extract_keywords(text, span_info=True)
+		keyword_processor.add_keyword(word, "123")
+	keywords_found = keyword_processor.extract_keywords(text)
 	print(keywords_found)
 
 def test_zhconv():
@@ -27,7 +27,7 @@ def test_zhconv():
 	print(convert('人体内存在很多微生物', 'zh-tw'))
 
 def test_char_judgement():
-	from char_judgement.char_judgement import is_contain_chinese, is_all_chinese, is_ch_digit_letter, len_of_ch_digit_letter
+	from char_judgement.char_judgement import is_contain_chinese, is_all_chinese, is_ch_digit_letter, len_of_ch_digit_letter, is_all_letter
 
 	res_1 = is_contain_chinese("abc测试一下")
 	res_2 = is_contain_chinese("abc")
@@ -43,6 +43,11 @@ def test_char_judgement():
 	print(res_6)
 	print(len_of_ch_digit_letter("..123abc测试一下a.."))
 
+	res_7 = is_all_letter("abc")
+	print(res_7)
+	res_8 = is_all_letter("abc12")
+	print(res_8 )
+
 def test_scel_to_txt():
 	from scel_to_txt.scel2txt import convert_scel_to_txt
 
@@ -50,6 +55,12 @@ def test_scel_to_txt():
 	out_path = "your/txt/path"
 	convert_scel_to_txt(in_path, out_path)
 
+def test_text_clean():
+	from text_clean.filter_text import filter_text_between_bracket
+	text = "()你好有东西, 挂精卫哪个位置？_(非常疑惑)"
+	res = filter_text_between_bracket(text)
+	print(res)
+
 
 if __name__ == '__main__':
-	test_char_judgement()
+	test_flast_text()
