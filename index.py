@@ -56,11 +56,14 @@ def test_scel_to_txt():
 	convert_scel_to_txt(in_path, out_path)
 
 def test_text_clean():
-	from text_clean.filter_text import filter_text_between_bracket
+	from text_clean.filter_text import filter_text_between_bracket, bracket_words_process
 	text = "()你好有东西, 挂精卫哪个位置？_(非常疑惑)"
-	res = filter_text_between_bracket(text)
+	text = "【女武神】丽塔"
+	text = "「影骑士·月轮」作战指南"
+	# res = filter_text_between_bracket(text)
+	res = bracket_words_process(text, is_filter=False)
 	print(res)
 
 
 if __name__ == '__main__':
-	test_flast_text()
+	test_text_clean()

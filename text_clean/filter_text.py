@@ -27,6 +27,41 @@ def filter_text_between_bracket(text):
 	return remove_text_by_section(text, bracket_positions)
 
 
+def bracket_words_process(text, bracket_symbols=None, is_filter=False):
+	if bracket_symbols is None:
+		l_symbols = ["(", "）", "[", "【", "「"]
+		r_symbols = [")", "）", "]", "】", "」"]
+	else:
+		l_symbols = [x[0] for x in bracket_symbols]
+		r_symbols = [x[1] for x in bracket_symbols]
+	bracket_positions = list()
+	text_len = len(text)
+	i = 0
+	while i < text_len:
+		if text[i] in l_symbols:
+			j = i + 1
+			while j < text_len and text[j] not in r_symbols:
+				j += 1
+			if j < text_len and text[j] in r_symbols and l_symbols.index(text[i]) == r_symbols.index(text[j]):
+				bracket_positions.append([i, j])
+				i = j
+		i += 1
+	if is_filter is True:
+		return remove_text_by_section(text, bracket_positions)
+	else:
+		words_list = list()
+		for _position in bracket_positions:
+			# print(_position)
+			_word = text[_position[0]+1:_position[1]]
+			if _word:
+				words_list.append(_word)
+
+		return words_list
+
+
+
+
+
 def remove_text_by_section(text, sections):
 	"""
 	:param text:
@@ -40,5 +75,9 @@ def remove_text_by_section(text, sections):
 		start_index = _section[1] + 1
 	res_text += text[start_index:len(text)]
 	return res_text
+
+
+
+
 
 
