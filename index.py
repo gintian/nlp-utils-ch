@@ -64,6 +64,19 @@ def test_text_clean():
 	res = bracket_words_process(text, is_filter=False)
 	print(res)
 
+def test_result_analysis():
+	from result_analysis.classification_result import total_accuracy, evaluation_metrics, classification_report
+	y_true = [1, 0, 0, 1, 1, 0, 1, -1, -1]
+	y_pred = [1, 0, 0, 0, 1, 0, 1, -1, 1]
+	res = total_accuracy(y_true, y_pred)
+	print(res)
+	res = evaluation_metrics(y_true, y_pred)
+	print(res)
+
+	res = classification_report(y_true, y_pred)
+	print(res)
+
+
 
 if __name__ == '__main__':
-	test_text_clean()
+	test_result_analysis()

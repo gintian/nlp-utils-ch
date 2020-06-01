@@ -13,22 +13,12 @@ from utils.logger import log
 
 class mysqlProcess():
 	def __init__(self, db_config=None):
-		self.connect_mysql(db_config)
+		self._connect_mysql(db_config)
 
-	def connect_mysql(self, db_config):
+	def _connect_mysql(self, db_config):
 		log.info("Connect mysql.....")
 		if db_config is None:
-			db_config = {
-				# "host": "rm-uf6s683d4lm7bh74swo.mysql.rds.aliyuncs.com",  # 外网地址
-				"host": "rm-uf6s683d4lm7bh74s.mysql.rds.aliyuncs.com",  # 内网地址
-				"user": "plat_data_popinion",
-				"password": "CqUo3ewA5F6lRP5V",
-				"database": "popinion",
-				"port": 3306,
-				"charset": "utf8",
-
-				# "autocommit":True
-			}
+			log.error("No mysql config.......")
 
 		mysql_host = db_config["host"]
 		mysql_user = db_config["user"]
@@ -81,6 +71,7 @@ class mysqlProcess():
 
 		except Exception as e:
 			print('Error e:{}'.format(e))
+			log.error("error:{}.....".format(e))
 			result = list()
 		return result
 

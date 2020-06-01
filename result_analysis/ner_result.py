@@ -298,7 +298,7 @@ def performance_measure(y_true, y_pred):
 	return performace_dict
 
 
-def classification_report(y_true, y_pred, digits=2, suffix=False):
+def ner_classification_report(y_true, y_pred, digits=2, suffix=False):
 	"""Build a text report showing the main classification metrics.
 
 	Args:
