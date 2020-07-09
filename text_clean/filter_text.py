@@ -6,6 +6,8 @@
    Changed by:
 """
 
+import re
+
 # 去除括号内容，避免对模型造成干扰
 # todo: badcase  挂精卫(哪个位置？_(非)常疑惑)
 
@@ -75,6 +77,25 @@ def remove_text_by_section(text, sections):
 		start_index = _section[1] + 1
 	res_text += text[start_index:len(text)]
 	return res_text
+
+
+# 删除网页标签
+def delete_html_tag(s):
+	s = re.sub('\{IMG:.?.?.?\}', '', s)  # 图片
+	s = re.sub(re.compile(r'[a-zA-Z]+://[^\s]+'), '', s)  # 网址
+	s = re.sub(re.compile('<.*?>'), '', s)  # 网页标签
+	s = re.sub(re.compile('&[a-zA-Z]+;?'), ' ', s)  # 网页标签
+	s = re.sub(re.compile('[a-zA-Z0-9]*[./]+[a-zA-Z0-9./]+[a-zA-Z0-9./]*'), ' ', s)
+	s = re.sub("\?{2,}", "", s)
+	s = re.sub("\r", "", s)
+	s = re.sub("\n", ",", s)
+	s = re.sub("\t", ",", s)
+	s = re.sub("（", ",", s)
+	s = re.sub("）", ",", s)
+	s = re.sub("\u3000", "", s)
+	s = re.sub(" ", "", s)
+	r4 = re.compile('\d{4}[-/]\d{2}[-/]\d{2}')  # 日期
+	return s
 
 
 
