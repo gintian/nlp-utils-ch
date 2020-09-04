@@ -56,13 +56,15 @@ def test_scel_to_txt():
 	convert_scel_to_txt(in_path, out_path)
 
 def test_text_clean():
-	from text_clean.filter_text import filter_text_between_bracket, bracket_words_process
-	text = "()你好有东西, 挂精卫哪个位置？_(非常疑惑)"
-	text = "【女武神】丽塔"
-	text = "「影骑士·月轮」作战指南"
-	# res = filter_text_between_bracket(text)
-	res = bracket_words_process(text, is_filter=False)
-	print(res)
+	# from text_clean.filter_text import filter_text_between_bracket, bracket_words_process
+	# text = "()你好有东西, 挂精卫哪个位置？_(非常疑惑)"
+	# text = "【女武神】丽塔"
+	# text = "「影骑士·月轮」作战指南"
+	# # res = filter_text_between_bracket(text)
+	# res = bracket_words_process(text, is_filter=False)
+	# print(res)
+	from text_clean.text_tokenize import token_en_number_seq_words
+	token_en_number_seq_words("add今天ab真cd4不错ab")
 
 def test_result_analysis():
 	from result_analysis.classification_result import total_accuracy, evaluation_metrics, classification_report
@@ -79,4 +81,4 @@ def test_result_analysis():
 
 
 if __name__ == '__main__':
-	test_result_analysis()
+	test_text_clean()
