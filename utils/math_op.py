@@ -6,6 +6,7 @@
    Changed by:
 """
 
+from numba import jit
 import numpy as np
 from utils.logger import log
 
@@ -34,3 +35,41 @@ def cos_sim(vector_a, vector_b):
 	cos = num / denom
 	sim = 0.5 + 0.5 * cos
 	return sim
+
+
+
+# 余弦相似度加速算法
+@jit(nopython=True)
+def cosine_similarity(u: np.ndarray, v: np.ndarray):
+    #     assert(u.shape[0] == v.shape[0])
+    uv = 0
+    uu = 0
+    vv = 0
+    for i in range(u.shape[0]):
+        uv += u[i] * v[i]
+        uu += u[i] * u[i]
+        vv += v[i] * v[i]
+    cos_theta = 0.0
+    if uu != 0 and vv != 0:
+        cos_theta = uv / np.sqrt(uu * vv)
+    return cos_theta
+
+
+@jit(nopython=True)
+def cosine_similarity_batch(u_list: np.ndarray, v: np.ndarray):
+    r = np.zeros(u_list.shape[0])
+    max_score = 0.0
+    for n, u in enumerate(u_list):
+        uv = 0
+        uu = 0
+        vv = 0
+        for i in range(u.shape[0]):
+            uv += u[i] * v[i]
+            uu += u[i] * u[i]
+            vv += v[i] * v[i]
+        cos_theta = 0.0
+        if uu != 0 and vv != 0:
+            cos_theta = uv / np.sqrt(uu * vv)
+            max_score = max(max_score, cos_theta)
+        r[n] = cos_theta
+    return r, max_score

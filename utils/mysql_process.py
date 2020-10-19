@@ -75,6 +75,19 @@ class mysqlProcess():
 			result = list()
 		return result
 
+	def excute_mysql(self, sql_str):
+		try:
+			with self.connection.cursor() as cursor:
+				# Create a new record
+				cursor.execute(sql_str)
+
+			# connection is not autocommit by default. So you must commit to save
+			# your changes.
+			self.connection.commit()
+		except Exception as e:
+			print('Error e:{}'.format(e))
+			self.connection.rollback()
+
 	def close_connection(self):
 		"""
 		waring: it's necessary

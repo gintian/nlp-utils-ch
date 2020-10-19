@@ -97,6 +97,16 @@ def delete_html_tag(s):
 	r4 = re.compile('\d{4}[-/]\d{2}[-/]\d{2}')  # 日期
 	return s
 
+def merege_seq_duplicated_to_one(text, duplicated_char):
+	splited_text = text.split(duplicated_char)
+	res_text = list()
+	for _text in splited_text:
+		if _text:
+			res_text.append(_text)
+	res_text = duplicated_char.join(res_text)
+	return res_text
+
+
 
 
 

@@ -18,7 +18,7 @@ log_level_map = {
 				 1: logging.INFO,
 				 2: logging.ERROR
 }
-log_level= log_level_map[log_level_case]
+log_level = log_level_map[log_level_case]
 
 class UuidFilter(logging.Filter):
 	def filter(self, record):
